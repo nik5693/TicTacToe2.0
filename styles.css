@@ -10,6 +10,7 @@
   background-color: gray;
 }
 .btn {
+  font-size: 400%;
   border: none;
   background-color: yellow;
   padding: 10px;
@@ -17,5 +18,6 @@
 header,
 h1,
 footer {
+  font-size: 100%;
   text-align: center;
 }
