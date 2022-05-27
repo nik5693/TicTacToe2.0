@@ -1,0 +1,21 @@
+.App {
+  background-color: yellowgreen;
+}
+.container {
+  font-family: sans-serif;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 150px);
+  grid-gap: 1px;
+  background-color: gray;
+}
+.btn {
+  border: none;
+  background-color: yellow;
+  padding: 10px;
+}
+header,
+h1,
+footer {
+  text-align: center;
+}
