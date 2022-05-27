@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 export default function App() {
   // const [disable, setDisable] = React.useState(false);
   const [count, setCount] = useState(0);
+  const [flag, setFlag] = useState(0);
   const buttonText = [],
     setButtonText = [];
   for (let i = 0; i < 9; i++) {
@@ -17,11 +18,25 @@ export default function App() {
 
   useEffect(() => {
     check();
+    draw();
   }, [count]);
 
   function dis() {
+    setFlag(1);
     for (let i = 0; i < 9; i++) {
       setDisable[i](true);
+    }
+  }
+
+  function draw() {
+    let c = 0;
+    for (let i = 0; i < 9; i++) {
+      if (disable[i] === true) {
+        c = c + 1;
+      }
+    }
+    if (c === 9 && flag === 0) {
+      alert("DRAW!");
     }
   }
 
@@ -132,6 +147,7 @@ export default function App() {
     }
     setCount(count + 1);
     setDisable[i](true);
+    // draw();
     // check();
   };
 
