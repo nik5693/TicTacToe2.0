@@ -29,9 +29,15 @@ export default function App() {
   ]);
 
   useEffect(() => {
-    check();
-    draw();
+    let x = check();
+    if (x === false) {
+      draw();
+    }
   }, [count]);
+
+  useEffect(() => {
+    draw();
+  }, [flag]);
 
   function dis() {
     setFlag(1);
@@ -62,18 +68,22 @@ export default function App() {
         alert("X Wins!");
       }
       dis();
+      return true;
     }
+    return false;
   }
 
   function check() {
-    alert_msg(0, 1, 2);
-    alert_msg(0, 3, 6);
-    alert_msg(0, 4, 8);
-    alert_msg(1, 4, 7);
-    alert_msg(2, 5, 8);
-    alert_msg(3, 4, 5);
-    alert_msg(6, 7, 8);
-    alert_msg(2, 4, 6);
+    let y = false;
+    y = y || alert_msg(0, 1, 2);
+    y = y || alert_msg(0, 3, 6);
+    y = y || alert_msg(0, 4, 8);
+    y = y || alert_msg(1, 4, 7);
+    y = y || alert_msg(2, 5, 8);
+    y = y || alert_msg(3, 4, 5);
+    y = y || alert_msg(6, 7, 8);
+    y = y || alert_msg(2, 4, 6);
+    return y;
   }
 
   const changeText = (i) => {
