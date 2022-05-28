@@ -90,74 +90,33 @@ export default function App() {
     setDisable(disable.slice(0, i).concat([true].concat(disable.slice(i + 1))));
   };
 
+  const btn = [];
+  for (let ind = 0; ind < 9; ind++) {
+    btn[ind] = (
+      <button
+        disabled={disable[ind]}
+        className="btn"
+        onClick={() => changeText(ind)}
+      >
+        <div>{buttonText[ind]}</div>
+      </button>
+    );
+  }
+
   return (
     <div className="App">
       <header> TIC-TAC-TOE</header>
       <h1 id="heading">First player plays with X and Second with O.</h1>
       <div className="container">
-        <button
-          disabled={disable[0]}
-          className="btn"
-          onClick={() => changeText(0)}
-        >
-          <div>{buttonText[0]}</div>
-        </button>
-        <button
-          disabled={disable[1]}
-          className="btn"
-          onClick={() => changeText(1)}
-        >
-          <div>{buttonText[1]}</div>
-        </button>
-        <button
-          disabled={disable[2]}
-          className="btn"
-          onClick={() => changeText(2)}
-        >
-          <div>{buttonText[2]}</div>
-        </button>
-        <button
-          disabled={disable[3]}
-          className="btn"
-          onClick={() => changeText(3)}
-        >
-          <div>{buttonText[3]}</div>
-        </button>
-        <button
-          disabled={disable[4]}
-          className="btn"
-          onClick={() => changeText(4)}
-        >
-          <div>{buttonText[4]}</div>
-        </button>
-        <button
-          disabled={disable[5]}
-          className="btn"
-          onClick={() => changeText(5)}
-        >
-          <div>{buttonText[5]}</div>
-        </button>
-        <button
-          disabled={disable[6]}
-          className="btn"
-          onClick={() => changeText(6)}
-        >
-          <div>{buttonText[6]}</div>
-        </button>
-        <button
-          disabled={disable[7]}
-          className="btn"
-          onClick={() => changeText(7)}
-        >
-          <div>{buttonText[7]}</div>
-        </button>
-        <button
-          disabled={disable[8]}
-          className="btn"
-          onClick={() => changeText(8)}
-        >
-          <div>{buttonText[8]}</div>
-        </button>
+        {btn[0]}
+        {btn[1]}
+        {btn[2]}
+        {btn[3]}
+        {btn[4]}
+        {btn[5]}
+        {btn[6]}
+        {btn[7]}
+        {btn[8]}
       </div>
       <footer> &copy; </footer>
     </div>
