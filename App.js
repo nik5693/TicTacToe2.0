@@ -2,19 +2,31 @@ import "./styles.css";
 import React, { useState, useEffect } from "react";
 
 export default function App() {
-  // const [disable, setDisable] = React.useState(false);
   const [count, setCount] = useState(0);
   const [flag, setFlag] = useState(0);
-  const buttonText = [],
-    setButtonText = [];
-  for (let i = 0; i < 9; i++) {
-    [buttonText[i], setButtonText[i]] = useState("Click");
-  }
-  const disable = [],
-    setDisable = [];
-  for (let i = 0; i < 9; i++) {
-    [disable[i], setDisable[i]] = useState(false);
-  }
+  const [buttonText, setButtonText] = useState([
+    "Click",
+    "Click",
+    "Click",
+    "Click",
+    "Click",
+    "Click",
+    "Click",
+    "Click",
+    "Click"
+  ]);
+
+  const [disable, setDisable] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+  ]);
 
   useEffect(() => {
     check();
@@ -23,9 +35,7 @@ export default function App() {
 
   function dis() {
     setFlag(1);
-    for (let i = 0; i < 9; i++) {
-      setDisable[i](true);
-    }
+    setDisable([true, true, true, true, true, true, true, true, true]);
   }
 
   function draw() {
@@ -40,97 +50,13 @@ export default function App() {
     }
   }
 
-  function check() {
+  function alert_msg(i, j, k) {
     if (
-      buttonText[0] !== "Click" &&
-      buttonText[0] === buttonText[1] &&
-      buttonText[1] === buttonText[2]
+      buttonText[i] !== "Click" &&
+      buttonText[i] === buttonText[j] &&
+      buttonText[j] === buttonText[k]
     ) {
-      if (buttonText[0] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[0] !== "Click" &&
-      buttonText[0] === buttonText[3] &&
-      buttonText[3] === buttonText[6]
-    ) {
-      if (buttonText[0] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[0] !== "Click" &&
-      buttonText[0] === buttonText[4] &&
-      buttonText[4] === buttonText[8]
-    ) {
-      if (buttonText[0] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[1] !== "Click" &&
-      buttonText[1] === buttonText[4] &&
-      buttonText[4] === buttonText[7]
-    ) {
-      if (buttonText[1] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[2] !== "Click" &&
-      buttonText[2] === buttonText[5] &&
-      buttonText[5] === buttonText[8]
-    ) {
-      if (buttonText[2] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[3] !== "Click" &&
-      buttonText[3] === buttonText[4] &&
-      buttonText[4] === buttonText[5]
-    ) {
-      if (buttonText[3] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[6] !== "Click" &&
-      buttonText[6] === buttonText[7] &&
-      buttonText[7] === buttonText[8]
-    ) {
-      if (buttonText[6] === "O") {
-        alert("O Wins!");
-      } else {
-        alert("X Wins!");
-      }
-      dis();
-    }
-    if (
-      buttonText[2] !== "Click" &&
-      buttonText[2] === buttonText[4] &&
-      buttonText[4] === buttonText[6]
-    ) {
-      if (buttonText[2] === "O") {
+      if (buttonText[i] === "O") {
         alert("O Wins!");
       } else {
         alert("X Wins!");
@@ -139,16 +65,29 @@ export default function App() {
     }
   }
 
+  function check() {
+    alert_msg(0, 1, 2);
+    alert_msg(0, 3, 6);
+    alert_msg(0, 4, 8);
+    alert_msg(1, 4, 7);
+    alert_msg(2, 5, 8);
+    alert_msg(3, 4, 5);
+    alert_msg(6, 7, 8);
+    alert_msg(2, 4, 6);
+  }
+
   const changeText = (i) => {
     if (count % 2 === 0) {
-      setButtonText[i]("X");
+      setButtonText(
+        buttonText.slice(0, i).concat(["X"].concat(buttonText.slice(i + 1)))
+      );
     } else {
-      setButtonText[i]("O");
+      setButtonText(
+        buttonText.slice(0, i).concat(["O"].concat(buttonText.slice(i + 1)))
+      );
     }
     setCount(count + 1);
-    setDisable[i](true);
-    // draw();
-    // check();
+    setDisable(disable.slice(0, i).concat([true].concat(disable.slice(i + 1))));
   };
 
   return (
@@ -158,63 +97,63 @@ export default function App() {
       <div className="container">
         <button
           disabled={disable[0]}
-          className="TopLeft btn"
+          className="btn"
           onClick={() => changeText(0)}
         >
           <div>{buttonText[0]}</div>
         </button>
         <button
           disabled={disable[1]}
-          className="Top btn"
+          className="btn"
           onClick={() => changeText(1)}
         >
           <div>{buttonText[1]}</div>
         </button>
         <button
           disabled={disable[2]}
-          className="TopRight btn"
+          className="btn"
           onClick={() => changeText(2)}
         >
           <div>{buttonText[2]}</div>
         </button>
         <button
           disabled={disable[3]}
-          className="Left btn"
+          className="btn"
           onClick={() => changeText(3)}
         >
           <div>{buttonText[3]}</div>
         </button>
         <button
           disabled={disable[4]}
-          className="Centre btn"
+          className="btn"
           onClick={() => changeText(4)}
         >
           <div>{buttonText[4]}</div>
         </button>
         <button
           disabled={disable[5]}
-          className="Right btn"
+          className="btn"
           onClick={() => changeText(5)}
         >
           <div>{buttonText[5]}</div>
         </button>
         <button
           disabled={disable[6]}
-          className="BottomLeft btn"
+          className="btn"
           onClick={() => changeText(6)}
         >
           <div>{buttonText[6]}</div>
         </button>
         <button
           disabled={disable[7]}
-          className="Bottom btn"
+          className="btn"
           onClick={() => changeText(7)}
         >
           <div>{buttonText[7]}</div>
         </button>
         <button
           disabled={disable[8]}
-          className="BottomRight btn"
+          className="btn"
           onClick={() => changeText(8)}
         >
           <div>{buttonText[8]}</div>
