@@ -118,15 +118,9 @@ export default function App() {
       <header> TIC-TAC-TOE</header>
       <h1 id="heading">First player plays with X and Second with O.</h1>
       <div className="container">
-        {btn[0]}
-        {btn[1]}
-        {btn[2]}
-        {btn[3]}
-        {btn[4]}
-        {btn[5]}
-        {btn[6]}
-        {btn[7]}
-        {btn[8]}
+        {btn.map((xy) => (
+          <li>{xy}</li>
+        ))}
       </div>
       <footer> &copy; </footer>
     </div>
